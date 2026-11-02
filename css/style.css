@@ -1,7 +1,7 @@
 /* ============================================
-   style.css —— 新闻选项卡（浅色主题）
-   效果参照课堂案例：白底、选中选项卡蓝色文字+蓝色
-   下划线、行首红色序号、红色数值点缀。
+   style.css —— 沪深行情选项卡（深色主题）
+   效果参照老师示例：深色页面、选中选项卡白底+
+   红色顶边、涨红跌绿、表格式行情列表。
    命名规则：所有 CSS 类名、id 以 wcr_ 开头
    （姓名"万超然"拼音首字母，下同）
    ============================================ */
@@ -14,61 +14,82 @@
 
 body {
   font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-  background: #ffffff;
-  color: #333333;
+  background: #1f1f1f;
+  color: #e6e6e6;
 }
 
 /* ---------- 页面容器 ---------- */
-.wcr_news-box {
-  max-width: 560px;
+.wcr_board {
+  max-width: 860px;
   margin: 40px auto;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
+  padding: 0 16px;
+}
+
+/* ---------- 头部：标题 + 日期 ---------- */
+.wcr_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 22px;
+}
+
+.wcr_title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.wcr_date {
+  font-size: 12px;
+  color: #8a8a8a;
 }
 
 /* ---------- 选项卡导航 ---------- */
 .wcr_tab-nav {
   display: flex;
   list-style: none;
-  border-bottom: 1px solid #dddddd;
 }
 
 .wcr_tab-item {
   flex: 1;
   text-align: center;
-  padding: 12px 0;
-  font-size: 15px;
-  color: #666666;
-  background: #fafafa;
-  border-right: 1px solid #eeeeee;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  padding: 13px 0;
+  font-size: 14px;
+  color: #9a9a9a;
+  background: #2a2a2a;
+  border: 1px solid #333333;
+  border-top: 3px solid transparent;
+  margin-left: -1px;
   cursor: pointer;
   user-select: none;
   transition: color 0.2s, background 0.2s;
 }
 
-.wcr_tab-item:last-child {
-  border-right: none;
+.wcr_tab-item:first-child {
+  margin-left: 0;
 }
 
 .wcr_tab-item:hover {
-  color: #1e6bb8;
+  color: #ffffff;
 }
 
-/* 选中状态：蓝色文字 + 蓝色下划线（参照课堂案例效果） */
+/* 选中状态：白底 + 黑字 + 红色顶边（参照示例效果） */
 .wcr_tab-item.wcr_active {
   position: relative;
   z-index: 1;
   background: #ffffff;
-  color: #1e6bb8;
+  color: #111111;
   font-weight: 700;
-  border-bottom-color: #1e6bb8;
+  border-color: #333333;
+  border-top-color: #e0562e;
 }
 
 /* ---------- 内容区 ---------- */
 .wcr_tab-content {
-  padding: 4px 0;
+  background: #181818;
+  border: 1px solid #333333;
+  border-top: none;
+  padding: 0 26px 8px;
 }
 
 /* 面板默认隐藏，选中才显示 */
@@ -80,79 +101,98 @@ body {
   display: block;
 }
 
-/* ---------- 新闻表格 ---------- */
+/* ---------- 汇总行 ---------- */
+.wcr_summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #8a8a8a;
+  padding: 16px 0 12px;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+/* ---------- 行情表格 ---------- */
 .wcr_table {
   width: 100%;
   border-collapse: collapse;
 }
 
+.wcr_table th {
+  font-size: 12px;
+  font-weight: 400;
+  color: #8a8a8a;
+  text-align: left;
+  padding: 14px 8px 12px;
+  border-bottom: 1px solid #2c2c2c;
+}
+
 .wcr_table td {
-  padding: 13px 14px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 14px;
+  padding: 15px 8px;
+  border-bottom: 1px solid #262626;
+  font-size: 15px;
+  color: #e6e6e6;
 }
 
 .wcr_table tbody tr:hover {
-  background: #f7fbff;
+  background: #222222;
 }
 
 .wcr_table tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* 右对齐列（来源/热度/时间） */
+/* 右对齐列（现价/涨跌幅） */
 .wcr_col-right {
   text-align: right;
-  color: #888888;
+}
+
+/* 股票代码（灰色小字） */
+.wcr_code {
+  color: #9a9a9a;
   font-size: 13px;
 }
 
-/* 序号：红色带点（参照案例"1."的样式） */
+/* 序号：红色带点（参照 1.jpg/2.jpg 中"1."的样式） */
 .wcr_rank {
-  width: 42px;
-  color: #d43c33;
-  font-size: 14px;
+  color: #ff5252;
+  font-weight: 700;
+  margin-right: 6px;
 }
 
-/* 前三名序号加粗 */
-.wcr_top3 {
+/* 上涨：红色（A股 convention：涨红） */
+.wcr_up {
+  color: #ff5252;
   font-weight: 700;
 }
 
-/* 最热新闻的热度数值（红色，对应案例中的涨跌幅） */
-.wcr_hot {
-  color: #d43c33;
+/* 下跌：绿色（A股 convention：跌绿） */
+.wcr_down {
+  color: #00b578;
   font-weight: 700;
-  font-size: 14px;
 }
 
-/* 新闻标题链接 */
-.wcr_link {
-  color: #333333;
-  text-decoration: none;
-}
-
-.wcr_link:hover {
-  color: #1e6bb8;
-  text-decoration: underline;
-}
-
-/* ---------- 页脚署名 ---------- */
-.wcr_footer {
-  margin-top: 14px;
+/* ---------- 页脚说明 ---------- */
+.wcr_note {
+  max-width: 860px;
+  margin: 14px auto 0;
+  padding: 0 18px;
   font-size: 12px;
-  color: #999999;
-  text-align: center;
+  color: #6f6f6f;
 }
 
 /* ---------- 小屏适配 ---------- */
 @media (max-width: 600px) {
-  .wcr_tab-item {
-    padding: 10px 0;
-    font-size: 14px;
+  .wcr_title {
+    font-size: 20px;
   }
 
-  .wcr_table td:nth-child(4) {
+  .wcr_tab-item {
+    padding: 11px 0;
+    font-size: 13px;
+  }
+
+  .wcr_table th:nth-child(2),
+  .wcr_table td:nth-child(2) {
     display: none;
   }
 }
