@@ -1,0 +1,158 @@
+/* ============================================
+   style.css —— 新闻选项卡（浅色主题）
+   效果参照课堂案例：白底、选中选项卡蓝色文字+蓝色
+   下划线、行首红色序号、红色数值点缀。
+   命名规则：所有 CSS 类名、id 以 wcr_ 开头
+   （姓名"万超然"拼音首字母，下同）
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  background: #ffffff;
+  color: #333333;
+}
+
+/* ---------- 页面容器 ---------- */
+.wcr_news-box {
+  max-width: 560px;
+  margin: 40px auto;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+}
+
+/* ---------- 选项卡导航 ---------- */
+.wcr_tab-nav {
+  display: flex;
+  list-style: none;
+  border-bottom: 1px solid #dddddd;
+}
+
+.wcr_tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 15px;
+  color: #666666;
+  background: #fafafa;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s, background 0.2s;
+}
+
+.wcr_tab-item:last-child {
+  border-right: none;
+}
+
+.wcr_tab-item:hover {
+  color: #1e6bb8;
+}
+
+/* 选中状态：蓝色文字 + 蓝色下划线（参照课堂案例效果） */
+.wcr_tab-item.wcr_active {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  color: #1e6bb8;
+  font-weight: 700;
+  border-bottom-color: #1e6bb8;
+}
+
+/* ---------- 内容区 ---------- */
+.wcr_tab-content {
+  padding: 4px 0;
+}
+
+/* 面板默认隐藏，选中才显示 */
+.wcr_tab-panel {
+  display: none;
+}
+
+.wcr_tab-panel.wcr_show {
+  display: block;
+}
+
+/* ---------- 新闻表格 ---------- */
+.wcr_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wcr_table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.wcr_table tbody tr:hover {
+  background: #f7fbff;
+}
+
+.wcr_table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 右对齐列（来源/热度/时间） */
+.wcr_col-right {
+  text-align: right;
+  color: #888888;
+  font-size: 13px;
+}
+
+/* 序号：红色带点（参照案例"1."的样式） */
+.wcr_rank {
+  width: 42px;
+  color: #d43c33;
+  font-size: 14px;
+}
+
+/* 前三名序号加粗 */
+.wcr_top3 {
+  font-weight: 700;
+}
+
+/* 最热新闻的热度数值（红色，对应案例中的涨跌幅） */
+.wcr_hot {
+  color: #d43c33;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* 新闻标题链接 */
+.wcr_link {
+  color: #333333;
+  text-decoration: none;
+}
+
+.wcr_link:hover {
+  color: #1e6bb8;
+  text-decoration: underline;
+}
+
+/* ---------- 页脚署名 ---------- */
+.wcr_footer {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #999999;
+  text-align: center;
+}
+
+/* ---------- 小屏适配 ---------- */
+@media (max-width: 600px) {
+  .wcr_tab-item {
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .wcr_table td:nth-child(4) {
+    display: none;
+  }
+}
